@@ -1,0 +1,98 @@
+h1
+{
+	text-align: center;
+	border-style: groove;
+	border-color: darkred;
+}
+body
+{
+	text-align: center;
+	background-color: lightblue;
+}
+p
+{
+	border-style: outset;
+	border-color: black;
+	background-color: white;
+	border-width: 5px;
+	border-radius: 5px;
+	margin-right: 250px;
+	margin-left: 250px;
+}
+.index_button
+{
+	background-color: white;
+	padding: 5px 32px;
+	border-radius: 10px;
+	border-bottom-style: solid;
+	border-top-style: none;
+	border-left-style: none;
+	border-right-style: none;
+	border-color: red;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+	text-shadow: 1px 1px red;
+	font-family: "Monaco";
+	font-weight: bold;
+	transition-duration: 0.4s;
+}
+.index_button:hover
+{
+	background-color: skyblue;
+}
+
+.index_button:active
+{
+	border-radius: 5px;
+	background-color: grey;
+}
+
+.button
+{
+	background-color: white;
+	padding: 5px 80px;
+	border-radius: 10px;
+	border-bottom-style: solid;
+	border-top-style: none;
+	border-left-style: none;
+	border-right-style: none;
+	border-color: red;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+	text-shadow: 1px 1px red;
+	font-family: "Monaco";
+	font-weight: bold;
+	transition-duration: 0.4s;
+}
+
+.button:hover
+{
+	background-color: skyblue;
+}
+.button:active
+{
+	background-color: deepskyblue;
+	border-radius: 5px;
+}
+
+.textinput
+{
+	border-bottom-style: solid;
+	border-top-style: none;
+	border-right-style: none;
+	border-left-style: none;
+	border-color: red;
+	background-color: lightblue;
+	padding: 5px 50px;
+	font-size: 20px;
+	font-family: monospace;
+	font-weight: bold;
+	text-align: left;
+}
+
+.inputlabel
+{
+	font-size: 20px;
+	font-family: monospace;
+	font-weight: bold;
+}
