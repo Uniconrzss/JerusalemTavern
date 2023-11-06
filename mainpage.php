@@ -64,7 +64,7 @@ $curr_post = 0;
 //Display all of the posts
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        if ($curr_post == 3) {
+        if ($curr_post == 2) { //How many Posts are displayed in the Top Posts Category
             break;
         } else {
             ; //Display Post
@@ -166,6 +166,7 @@ if ($result->num_rows > 0) {
 }
 $conn->close();
 #echo "<h1>testins</h1>";
+include 'footer.php';
 ?>
 </footer>
 </body>
