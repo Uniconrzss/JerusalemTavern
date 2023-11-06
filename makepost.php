@@ -4,7 +4,7 @@ $user = $_POST["user"];
 $title = $_POST["p_title"];
 $data = $_POST["p_data"];
 //$image = $_POST["p_image"];
-
+//Test
 echo $data;
 //database_info
 $login_host = "127.0.0.1";
