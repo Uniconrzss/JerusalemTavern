@@ -55,7 +55,7 @@
 	transition-duration: 0.4s;
 	text-align: center;
 	border-style: none;
-	background-color: white;
+	background-color: transparent;
 	font-size: 30px;
 }
 #emoji_button:hover
@@ -63,7 +63,7 @@
 	border-style: solid;
 	border-color: yellow;
 	border-radius: 20px;
-	background-color: lightgray;
+	background-color: white;
 	font-size: 40px;
 }
 

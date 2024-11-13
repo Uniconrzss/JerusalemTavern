@@ -29,9 +29,9 @@ if ($users_table_result->num_rows > 0) {
     while ($users_row = $users_table_result->fetch_assoc()) {
         echo "Comparing $user with " . $users_row["username"] . " id: " . $users_row["id"];?><br><?php
 if ($users_row["username"] == $user) {
-            $username_id = $users_row["id"];
-            echo "$user ";
-            echo "$username_id";
+            $username_id = (int)$users_row["id"];
+            //echo "$user ";
+            //echo "$username_id";
             break;
         }
     }
@@ -56,9 +56,10 @@ if (!empty($_FILES["b_image"]["name"]) && !empty($_FILES["p_image"]["name"])) {
     if (in_array($post_filetype, $allowTypes) && in_array($background_filetype, $allowTypes)) {
         move_uploaded_file($_FILES["b_image"]["tmp_name"], $background_filepath);
         move_uploaded_file($_FILES["p_image"]["tmp_name"], $post_filepath);
+        echo($post_filepath);
 
         $stmt = $conn->prepare("INSERT INTO messages (message, user_id, title, image, post_image) VALUES (?,?,?,?,?)");
-        $stmt->bind_param("sssss", $data, $username_id, $title, $background_file, $post_file);
+        $stmt->bind_param("sisss", $data, $username_id, $title, $background_file, $post_file);
         $stmt->execute();
         $stmt->close();
     }
@@ -67,16 +68,17 @@ if (!empty($_FILES["b_image"]["name"]) && !empty($_FILES["p_image"]["name"])) {
     echo "File is :$file";?><br><?php
 $filepath = $background_image_dir . $file;
 
-    ?><br><?php echo "full path: $filepath"; ?><br><?php
+    ?><br><?php echo "full pathaaaa: $filepath"; ?><br><?php
 $filetype = pathinfo($filepath, PATHINFO_EXTENSION);
 
     $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
-
+    echo("testestets");
     if (in_array($filetype, $allowTypes)) {
         move_uploaded_file($_FILES["b_image"]["tmp_name"], $filepath);
-
+        echo($filepath);
+        echo("testestest");
         $stmt = $conn->prepare("INSERT INTO messages (message, user_id, title, image) VALUES (?,?,?,?)");
-        $stmt->bind_param("ssss", $data, $username_id, $title, $file);
+        $stmt->bind_param("siss", $data, $username_id, $title, $file);
         $stmt->execute();
         $stmt->close();
 
@@ -84,7 +86,7 @@ $filetype = pathinfo($filepath, PATHINFO_EXTENSION);
 } else {
         echo "Your filetype is not allowed!";
         $stmt = $conn->prepare("INSERT INTO messages (message, user_id, title) VALUES (?,?,?)");
-        $stmt->bind_param("sss", $data, $username_id, $title);
+        $stmt->bind_param("sis", $data, $username_id, $title);
         $stmt->execute();
         $stmt->close();
     }
@@ -93,30 +95,49 @@ $filetype = pathinfo($filepath, PATHINFO_EXTENSION);
     echo "File is :$file";?><br><?php
 $filepath = $post_image_dir . $file;
 
-    ?><br><?php echo "full path: $filepath"; ?><br><?php
+    ?><br><?php echo "full pathajkkj: $filepath"; ?><br><?php
 $filetype = pathinfo($filepath, PATHINFO_EXTENSION);
 
     $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
 
     if (in_array($filetype, $allowTypes)) {
-        move_uploaded_file($_FILES["p_image"]["tmp_name"], $filepath);
-
+        if (isset($_FILES["p_image"]) && $_FILES["p_image"]["error"] == 0) {
+            echo("Bumba");
+        } else {
+            echo "Error: " . $_FILES["p_image"]["error"];
+        }
+        if(move_uploaded_file($_FILES["p_image"]["tmp_name"], $filepath))
+        {
+            echo("Viss labi");
+            
+        }
+        else
+        {
+            echo("viss nav labi");
+            echo("<br>".$filepath."<br>".$_FILES["p_image"]["tmp_name"]);
+        }
+        //echo (__DIR__."/".$filepath);
+        //echo(sgsd);
+        // mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+        echo("Echo ".gettype($username_id)."<br>");
         $stmt = $conn->prepare("INSERT INTO messages (message, user_id, title, post_image) VALUES (?,?,?,?)");
-        $stmt->bind_param("ssss", $data, $username_id, $title, $file);
+        $stmt->bind_param("siss", $data, $username_id, $title, $file);
+        echo ("second testestes2");
         $stmt->execute();
         $stmt->close();
+        echo ("second testestes2");
 
         ?><br><?php echo "file was uploaded successfully!"; ?><br><?php
 } else {
         echo "Your filetype is not allowed!";
         $stmt = $conn->prepare("INSERT INTO messages (message, user_id, title) VALUES (?,?,?)");
-        $stmt->bind_param("sss", $data, $username_id, $title);
+        $stmt->bind_param("sis", $data, $username_id, $title);
         $stmt->execute();
         $stmt->close();
     }
 } else {
     $stmt = $conn->prepare("INSERT INTO messages (message, user_id, title) VALUES (?,?,?)");
-    $stmt->bind_param("sss", $data, $username_id, $title);
+    $stmt->bind_param("sis", $data, $username_id, $title);
     $stmt->execute();
     $stmt->close();
 }

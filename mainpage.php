@@ -113,7 +113,7 @@ $conn = mysqli_connect($servername, $dbusername, $password, $dbname);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-$sql = "SELECT messages.image, messages.post_image, messages.title, messages.message, users.username, messages.id FROM messages, users WHERE users.id = user_id ORDER BY messages.likes DESC";
+$sql = "SELECT messages.image, messages.post_image, messages.title, messages.message, users.username, messages.id FROM messages, users WHERE users.id = user_id ORDER BY messages.id DESC";
 
 $result = $conn->query($sql);
 
@@ -128,7 +128,7 @@ if ($result->num_rows > 0) {
         if (mysqli_num_rows($likes_result) > 0) {
             while ($likes_row = $likes_result->fetch_assoc()) {
                 if ($likes_row["message_id"] == $row["id"]) {
-                    $post_like_ammount = $post_like_ammount + 1;
+                    $post_like_ammount += 1;
                 }
             }
         } else {

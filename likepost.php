@@ -62,7 +62,9 @@ $stmt->bind_param("ss", $liked_post_id, $username_id);
 $stmt->execute();
 $stmt->close();
 
-$sql = "UPDATE messages SET likes = likes + 1";
+//$sql = "UPDATE messages SET likes = ADD(likes,1) WHERE";
+
+$sql = "UPDATE messages SET likes = likes + 1 WHERE (id = {$liked_post_id})";
 if (mysqli_query($conn, $sql)) {
     //good
 } else {
