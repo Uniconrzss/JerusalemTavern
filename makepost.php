@@ -1,27 +1,19 @@
 <?php
-//data
+// DB MODEL SYSTEM
+require "model/condb.php";
+
+// FORM POST DATA
 $user = $_POST["user"];
 $title = $_POST["p_title"];
 $data = $_POST["p_data"];
 //$image = $_POST["p_image"];
 
-echo $data;
-//database_info
-$login_host = "127.0.0.1";
-$login_name = "root";
-$login_password = "";
-$login_dbname = "emila_baze";
-
-//Connect
-$conn = mysqli_connect($login_host, $login_name, $login_password, $login_dbname);
-
-//Check Connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// CONNECT
+$conn = connDB();
 echo "Connected";
 
 //Find id of user
+// OLD COOKIE SYSTEM - RENEW!!
 $users_table_data = "SELECT id, username FROM users";
 $users_table_result = $conn->query($users_table_data);
 if ($users_table_result->num_rows > 0) {
@@ -58,7 +50,7 @@ if (!empty($_FILES["b_image"]["name"]) && !empty($_FILES["p_image"]["name"])) {
         move_uploaded_file($_FILES["p_image"]["tmp_name"], $post_filepath);
         echo($post_filepath);
 
-        $stmt = $conn->prepare("INSERT INTO messages (message, user_id, title, image, post_image) VALUES (?,?,?,?,?)");
+        $stmt = $conn->prepare("INSERT INTO posts (content, uid, title, image, post_image) VALUES (?,?,?,?,?)");
         $stmt->bind_param("sisss", $data, $username_id, $title, $background_file, $post_file);
         $stmt->execute();
         $stmt->close();
@@ -77,7 +69,7 @@ $filetype = pathinfo($filepath, PATHINFO_EXTENSION);
         move_uploaded_file($_FILES["b_image"]["tmp_name"], $filepath);
         echo($filepath);
         echo("testestest");
-        $stmt = $conn->prepare("INSERT INTO messages (message, user_id, title, image) VALUES (?,?,?,?)");
+        $stmt = $conn->prepare("INSERT INTO posts (content, uid, title, image) VALUES (?,?,?,?)");
         $stmt->bind_param("siss", $data, $username_id, $title, $file);
         $stmt->execute();
         $stmt->close();
@@ -85,7 +77,7 @@ $filetype = pathinfo($filepath, PATHINFO_EXTENSION);
         ?><br><?php echo "file was uploaded successfully!"; ?><br><?php
 } else {
         echo "Your filetype is not allowed!";
-        $stmt = $conn->prepare("INSERT INTO messages (message, user_id, title) VALUES (?,?,?)");
+        $stmt = $conn->prepare("INSERT INTO posts (content, uid, title) VALUES (?,?,?)");
         $stmt->bind_param("sis", $data, $username_id, $title);
         $stmt->execute();
         $stmt->close();
@@ -120,7 +112,7 @@ $filetype = pathinfo($filepath, PATHINFO_EXTENSION);
         //echo(sgsd);
         // mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         echo("Echo ".gettype($username_id)."<br>");
-        $stmt = $conn->prepare("INSERT INTO messages (message, user_id, title, post_image) VALUES (?,?,?,?)");
+        $stmt = $conn->prepare("INSERT INTO posts (content, uid, title, post_image) VALUES (?,?,?,?)");
         $stmt->bind_param("siss", $data, $username_id, $title, $file);
         echo ("second testestes2");
         $stmt->execute();
@@ -130,13 +122,13 @@ $filetype = pathinfo($filepath, PATHINFO_EXTENSION);
         ?><br><?php echo "file was uploaded successfully!"; ?><br><?php
 } else {
         echo "Your filetype is not allowed!";
-        $stmt = $conn->prepare("INSERT INTO messages (message, user_id, title) VALUES (?,?,?)");
+        $stmt = $conn->prepare("INSERT INTO posts (content, uid, title) VALUES (?,?,?)");
         $stmt->bind_param("sis", $data, $username_id, $title);
         $stmt->execute();
         $stmt->close();
     }
 } else {
-    $stmt = $conn->prepare("INSERT INTO messages (message, user_id, title) VALUES (?,?,?)");
+    $stmt = $conn->prepare("INSERT INTO posts (content, uid, title) VALUES (?,?,?)");
     $stmt->bind_param("sis", $data, $username_id, $title);
     $stmt->execute();
     $stmt->close();

@@ -15,5 +15,6 @@ function conDB() {
 		$conn->close();
 		die("Issue connecting to the database! Check config!");		
 	}
+	return $conn;
 }
 ?>

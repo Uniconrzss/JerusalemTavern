@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <?php
+// DB MODEL SYSTEM
+require "model/condb.php";
+
+// OLD COOKIE SYSTEM - RENEW WITH SESSIONS!!
 $username = $_COOKIE['u_name'];
 ?>
 <html>
@@ -45,19 +49,11 @@ echo "Welcome $username to the tavern.";
 
 <nav id="home-item" class="top3">
     <h1>🌟 Top Posts 🌟</h1>
-    <?php
-$servername = "127.0.0.1";
-$dbusername = "root";
-$password = "";
-$dbname = "emila_baze";
+<?php
+// CONNECT
+$conn = connDB();
 
-//Izveidot savienojumu
-$conn = mysqli_connect($servername, $dbusername, $password, $dbname);
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-$sql = "SELECT messages.image, messages.post_image, messages.title, messages.message, users.username, messages.id FROM messages, users WHERE users.id = user_id ORDER BY messages.likes DESC";
+$sql = "SELECT posts.image, posts.post_image, posts.title, posts.content, users.username, posts.id FROM posts, users WHERE users.id = uid ORDER BY posts.likes DESC";
 
 $result = $conn->query($sql);
 $curr_post = 0;
@@ -71,7 +67,7 @@ if ($result->num_rows > 0) {
             ?>
             <h3 id="top_post_title"><?php echo $row["title"]; ?></h3>
             <h3>From: <?php echo $row["username"]; ?></h3>
-            <p id="top_post_message"><?php echo $row["message"]; ?></p><?php
+            <p id="top_post_message"><?php echo $row["content"]; ?></p><?php
 }
         $curr_post = $curr_post + 1;
 
@@ -102,18 +98,10 @@ if ($result->num_rows > 0) {
 <h1>Others Posts</h1>
 <!-- List all posts -->
 <?php
-$servername = "127.0.0.1";
-$dbusername = "root";
-$password = "";
-$dbname = "emila_baze";
+// CONNECT
+$conn = connDB();
 
-//Izveidot savienojumu
-$conn = mysqli_connect($servername, $dbusername, $password, $dbname);
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-$sql = "SELECT messages.image, messages.post_image, messages.title, messages.message, users.username, messages.id FROM messages, users WHERE users.id = user_id ORDER BY messages.id DESC";
+$sql = "SELECT posts.image, posts.post_image, posts.title, posts.content, users.username, posts.id FROM posts, users WHERE users.id = uid ORDER BY posts.id DESC";
 
 $result = $conn->query($sql);
 
@@ -123,11 +111,11 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         //Count Likes
         $post_like_ammount = 0;
-        $likes_sql = "SELECT likes.message_id, messages.message FROM messages, likes WHERE likes.message_id = messages.id";
+        $likes_sql = "SELECT likes.pid, posts.content FROM posts, likes WHERE likes.pid = posts.id";
         $likes_result = $conn->query($likes_sql);
         if (mysqli_num_rows($likes_result) > 0) {
             while ($likes_row = $likes_result->fetch_assoc()) {
-                if ($likes_row["message_id"] == $row["id"]) {
+                if ($likes_row["pid"] == $row["id"]) {
                     $post_like_ammount += 1;
                 }
             }
@@ -149,7 +137,7 @@ if ($result->num_rows > 0) {
                 <a>
                 </a>
             </form>
-        	<p class="post_message"><?php echo $row["message"]; ?></p>
+        	<p class="post_message"><?php echo $row["content"]; ?></p>
             <?php
 
         if ($post_imageURL != "post-images/") {

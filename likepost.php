@@ -1,21 +1,16 @@
 <?php
+// DB MODEL SYSTEM
+require "model/condb.php";
+
+// USER DATA
 $liked_post_id = $_POST['post_id'];
+
+// FROM OLD COOKIE SYSTEM - RENEW!!
 $username = $_POST['username'];
 echo "Username is $username    ";
 
-//database_info
-$login_host = "127.0.0.1";
-$login_name = "root";
-$login_password = "";
-$login_dbname = "emila_baze";
-
 //Connect
-$conn = mysqli_connect($login_host, $login_name, $login_password, $login_dbname);
-
-//Check Connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+$conn = connDB();
 echo "Connected";
 
 $sql = "SELECT id, username FROM users";
@@ -23,6 +18,7 @@ $sql = "SELECT id, username FROM users";
 $result = $conn->query($sql);
 
 //Find User ID
+// FROM OLD COOKIE SYSTEM - RENEW!!
 if ($result->num_rows > 0) {
     // output data of each row
     while ($row = $result->fetch_assoc()) {
@@ -37,13 +33,13 @@ if ($result->num_rows > 0) {
 }
 
 //Check if user has already liked the post
-$sql = "SELECT user_id, id, message_id FROM likes";
+$sql = "SELECT uid, id, pid FROM likes";
 
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
 // output data of each row
     while ($row = $result->fetch_assoc()) {
-        if ($row['message_id'] == $liked_post_id && $row['user_id'] == $username_id) {
+        if ($row['pid'] == $liked_post_id && $row['uid'] == $username_id) {
             //Post has already been liked!
             header('Location: mainpage.php');
             die();
@@ -56,7 +52,7 @@ if ($result->num_rows > 0) {
 
 //Like the post
 
-$stmt = $conn->prepare("INSERT INTO likes (message_id, user_id) VALUES (?,?)");
+$stmt = $conn->prepare("INSERT INTO likes (pid, uid) VALUES (?,?)");
 $stmt->bind_param("ss", $liked_post_id, $username_id);
 
 $stmt->execute();
@@ -64,7 +60,7 @@ $stmt->close();
 
 //$sql = "UPDATE messages SET likes = ADD(likes,1) WHERE";
 
-$sql = "UPDATE messages SET likes = likes + 1 WHERE (id = {$liked_post_id})";
+$sql = "UPDATE posts SET likes = likes + 1 WHERE (id = {$liked_post_id})";
 if (mysqli_query($conn, $sql)) {
     //good
 } else {
