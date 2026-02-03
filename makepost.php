@@ -9,7 +9,7 @@ $data = $_POST["p_data"];
 //$image = $_POST["p_image"];
 
 // CONNECT
-$conn = connDB();
+$conn = conDB();
 echo "Connected";
 
 //Find id of user

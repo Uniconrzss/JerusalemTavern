@@ -1,15 +1,13 @@
 <?php
 function getDBSettings() {
-	$dbsettingsFile = fopen("dbsettings.json") or return "Failed to open file!";
-	$fdata = fread($dbsettingsFile, filesize("dbsettings.json"));
+	$dbsettingsFile = fopen(__DIR__."/dbsettings.json", "r");
+	$fdata = fread($dbsettingsFile, filesize(__DIR__."/dbsettings.json"));
 	return $fdata;
 }
 
 function conDB() {
 	$dbData = json_decode(getDBSettings());
-	
-	$conn = new mysqli($dbData["host"], $dbData["user"], $dbData["pass"], $dbData["db"]);
-
+	$conn = new mysqli($dbData->host, $dbData->user, $dbData->pass, $dbData->db);
 	if ($conn->connect_error)
 	{
 		$conn->close();

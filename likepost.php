@@ -10,7 +10,7 @@ $username = $_POST['username'];
 echo "Username is $username    ";
 
 //Connect
-$conn = connDB();
+$conn = conDB();
 echo "Connected";
 
 $sql = "SELECT id, username FROM users";

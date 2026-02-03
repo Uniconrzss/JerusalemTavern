@@ -51,7 +51,7 @@ echo "Welcome $username to the tavern.";
     <h1>🌟 Top Posts 🌟</h1>
 <?php
 // CONNECT
-$conn = connDB();
+$conn = conDB();
 
 $sql = "SELECT posts.image, posts.post_image, posts.title, posts.content, users.username, posts.id FROM posts, users WHERE users.id = uid ORDER BY posts.likes DESC";
 
@@ -99,7 +99,7 @@ if ($result->num_rows > 0) {
 <!-- List all posts -->
 <?php
 // CONNECT
-$conn = connDB();
+$conn = conDB();
 
 $sql = "SELECT posts.image, posts.post_image, posts.title, posts.content, users.username, posts.id FROM posts, users WHERE users.id = uid ORDER BY posts.id DESC";
 
