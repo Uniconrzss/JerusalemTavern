@@ -4,7 +4,14 @@
 require "model/condb.php";
 
 // OLD COOKIE SYSTEM - RENEW WITH SESSIONS!!
-$username = $_COOKIE['u_name'];
+if (isset($_COOKIE["u_name"]))
+{
+	$username = $_COOKIE['u_name'];
+}
+else
+{
+	header("Location: index.html");
+}
 ?>
 <html>
 <head>
@@ -39,16 +46,17 @@ $username = $_COOKIE['u_name'];
 <p id="welcome_msg"><?php
 echo "Welcome $username to the tavern.";
 ?></p><br>
-
+<a href="logout.php"><button class="post_button">Logout</button></a>
+<br>
 <nav id="home-item" class="dev_news">
-    <h1>Development News</h1>
+    <h1>Dev News</h1>
     <p class="dev_news_message">
         This is where im going to be writing development news about the website
     </p>
 </nav>
 
 <nav id="home-item" class="top3">
-    <h1>🌟 Top Posts 🌟</h1>
+    <h1>Top Posts</h1>
 <?php
 // CONNECT
 $conn = conDB();
@@ -86,11 +94,11 @@ if ($result->num_rows > 0) {
 	<label class="new_post_label" for="p_data">Post</label><br>
 	<textarea id="textarea"class="new_post_text" name="p_data" id="p_data" type="text" rows="10" cols="30" required></textarea><br>
     <!-- <textarea id="p_data"class="new_post_text" style="display:none;" name="p_data" id="p_data" type="text" rows="10" cols="30" required></textarea> -->
-    <label>Background Image: </label>
+<!--    <label>Background Image: </label>
     <input type="file" name="b_image" id="b_image"><br>
     <label>Post Image: </label>
-    <input type="file" name="p_image" id="p_image" style="float:left;"><br>
-	<input class="post_button" type="submit" name="Post_Button" value="Post"><br>
+    <input type="file" name="p_image" id="p_image"><br> -->
+    <input class="post_button" type="submit" name="Post_Button" value="Post"/><br>
 </form>
 <br>
 <br>

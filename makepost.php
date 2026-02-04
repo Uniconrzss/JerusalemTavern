@@ -32,8 +32,8 @@ if ($users_row["username"] == $user) {
     die();
 }
 
-$background_image_dir = "images/";
-$post_image_dir = "post-images/";
+$background_image_dir = __DIR__."/images/";
+$post_image_dir = __DIR__."post-images/";
 
 if (!empty($_FILES["b_image"]["name"]) && !empty($_FILES["p_image"]["name"])) {
 
@@ -49,7 +49,6 @@ if (!empty($_FILES["b_image"]["name"]) && !empty($_FILES["p_image"]["name"])) {
         move_uploaded_file($_FILES["b_image"]["tmp_name"], $background_filepath);
         move_uploaded_file($_FILES["p_image"]["tmp_name"], $post_filepath);
         echo($post_filepath);
-
         $stmt = $conn->prepare("INSERT INTO posts (content, uid, title, image, post_image) VALUES (?,?,?,?,?)");
         $stmt->bind_param("sisss", $data, $username_id, $title, $background_file, $post_file);
         $stmt->execute();
@@ -105,13 +104,13 @@ $filetype = pathinfo($filepath, PATHINFO_EXTENSION);
         }
         else
         {
-            echo("viss nav labi");
+            echo("Error: ". $_FILES["p_image"]["error"]);
             echo("<br>".$filepath."<br>".$_FILES["p_image"]["tmp_name"]);
         }
         //echo (__DIR__."/".$filepath);
         //echo(sgsd);
         // mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-        echo("Echo ".gettype($username_id)."<br>");
+        echo("<br>Echo ".gettype($username_id)."<br>");
         $stmt = $conn->prepare("INSERT INTO posts (content, uid, title, post_image) VALUES (?,?,?,?)");
         $stmt->bind_param("siss", $data, $username_id, $title, $file);
         echo ("second testestes2");
