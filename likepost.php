@@ -63,6 +63,7 @@ $stmt->close();
 $sql = "UPDATE posts SET likes = likes + 1 WHERE (id = {$liked_post_id})";
 if (mysqli_query($conn, $sql)) {
     //good
+	echo("Post updated");
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }

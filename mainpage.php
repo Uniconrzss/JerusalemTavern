@@ -3,10 +3,20 @@
 // DB MODEL SYSTEM
 require "model/condb.php";
 
-// OLD COOKIE SYSTEM - RENEW WITH SESSIONS!!
-if (isset($_COOKIE["u_name"]))
+if (isset($_COOKIE["u_cookie"]))
 {
-	$username = $_COOKIE['u_name'];
+	$usercookie = $_COOKIE['u_cookie'];
+	// Validate Cookie
+	$conn = conDB();
+
+	$stmt = $conn->prepare("SELECT users.username FROM sessions, users WHERE users.id = sessions.uid AND sessions.cookie = ?");
+	$stmt->bind_param("s", $usercookie);
+	$stmt->execute();
+	$stmt->bind_result($username);
+	$stmt->fetch();
+	$stmt->close();
+
+	// Check if 
 }
 else
 {
@@ -59,7 +69,6 @@ echo "Welcome $username to the tavern.";
     <h1>Top Posts</h1>
 <?php
 // CONNECT
-$conn = conDB();
 
 $sql = "SELECT posts.image, posts.post_image, posts.title, posts.content, users.username, posts.id FROM posts, users WHERE users.id = uid ORDER BY posts.likes DESC";
 
@@ -94,12 +103,13 @@ if ($result->num_rows > 0) {
 	<label class="new_post_label" for="p_data">Post</label><br>
 	<textarea id="textarea"class="new_post_text" name="p_data" id="p_data" type="text" rows="10" cols="30" required></textarea><br>
     <!-- <textarea id="p_data"class="new_post_text" style="display:none;" name="p_data" id="p_data" type="text" rows="10" cols="30" required></textarea> -->
-<!--    <label>Background Image: </label>
+    <label>Background Image: </label>
     <input type="file" name="b_image" id="b_image"><br>
     <label>Post Image: </label>
-    <input type="file" name="p_image" id="p_image"><br> -->
+    <input type="file" name="p_image" id="p_image"><br>
     <input class="post_button" type="submit" name="Post_Button" value="Post"/><br>
 </form>
+<br>
 <br>
 <br>
 <footer>
