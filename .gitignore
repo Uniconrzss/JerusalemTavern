@@ -1,3 +1,5 @@
+!/images
+!/post-images
 /images/*
 /post-images/*
 /model/dbsettings.json
