@@ -1,0 +1,5 @@
+images/*
+post-images/*
+model/dbsettings.json
+!model/condb.php
+!model/dbsettings.json.example
