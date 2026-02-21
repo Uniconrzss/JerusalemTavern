@@ -22,13 +22,14 @@ $sql = "SELECT id, username, password FROM users";
 $result = $connection->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-	// echo("<br> GIVEN HASH:".password_hash($passwordins, PASSWORD_DEFAULT)."<br>ROW HASH:".$row['password']."<br>");    
+// echo("<br> GIVEN HASH:".password_hash($passwordins, PASSWORD_DEFAULT)."<br>ROW HASH:".$row['password']."<br>");    
 	if ($row["username"] == $username && password_verify($passwordins, $row["password"])) {
             //logged in!!!!!!
-            // echo "logged in!";
+           //  echo "logged in!";
 		
 		// Create entry in sessions table
 		$stmt = $connection->prepare("INSERT INTO sessions (cookie, uid) VALUES (?, ?)");
+		
 		$cookieval = hash('sha256', strval(rand(0,9999)).$row["id"]);
 		$stmt->bind_param("ss", $cookieval, $row["id"]);
 		$stmt->execute();

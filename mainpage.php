@@ -16,7 +16,11 @@ if (isset($_COOKIE["u_cookie"]))
 	$stmt->fetch();
 	$stmt->close();
 
-	// Check if 
+	// Check if session exists
+	if (!$username)
+	{
+		header("Location: index.html");
+	}
 }
 else
 {
@@ -71,7 +75,6 @@ echo "Welcome $username to the tavern.";
 // CONNECT
 
 $sql = "SELECT posts.image, posts.post_image, posts.title, posts.content, users.username, posts.id FROM posts, users WHERE users.id = uid ORDER BY posts.likes DESC";
-
 $result = $conn->query($sql);
 $curr_post = 0;
 //Display all of the posts
@@ -96,8 +99,6 @@ if ($result->num_rows > 0) {
 <!-- Create new post -->
 <form id="home-item" class="posting_form" action="makepost.php" method="post" autocomplete="off" enctype="multipart/form-data">
     <h2>Create a New Post</h2>
-	<input type="textarea" style="display:none;" name="user" value="<?php echo $username; ?>"/>
-    <!-- <input type="hidden" name="p_data" id="p_data" value=" "/> -->
 	<label class="new_post_label" for="p_title">Title</label><br>
 	<input class="new_post_title"type="text" id="p_title" name="p_title"><br><br>
 	<label class="new_post_label" for="p_data">Post</label><br>

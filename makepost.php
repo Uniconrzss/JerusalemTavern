@@ -3,33 +3,45 @@
 require "model/condb.php";
 
 // FORM POST DATA
-$user = $_POST["user"];
-$title = $_POST["p_title"];
-$data = $_POST["p_data"];
-//$image = $_POST["p_image"];
+$title = htmlentities($_POST["p_title"]);
+$data = htmlentities($_POST["p_data"]);
+
+// CHECK IF TITLE AND DATA ARE VALID!
+if ($title == '' || $data == '')
+{
+	// DATA AND OR TITLE ARE INVALID/EMPTY!
+	// RETURN TO MAINPAGE.
+	header('Location: mainpage.php');
+}
 
 // CONNECT
 $conn = conDB();
 echo "Connected";
 
-//Find id of user
-// OLD COOKIE SYSTEM - RENEW!!
-$users_table_data = "SELECT id, username FROM users";
-$users_table_result = $conn->query($users_table_data);
-if ($users_table_result->num_rows > 0) {
-    // output data of each row
-    while ($users_row = $users_table_result->fetch_assoc()) {
-        echo "Comparing $user with " . $users_row["username"] . " id: " . $users_row["id"];?><br><?php
-if ($users_row["username"] == $user) {
-            $username_id = (int)$users_row["id"];
-            //echo "$user ";
-            //echo "$username_id";
-            break;
-        }
-    }
-} else {
-    echo "Couldnt post, not logged in?";
-    die();
+// LOGIN SYSTEM UPDATED
+if (isset($_COOKIE["u_cookie"]))
+{
+        $usercookie = $_COOKIE['u_cookie'];
+        // Validate Cookie
+        
+        $stmt = $conn->prepare("SELECT users.username, users.id FROM sessions, users WHERE users.id = sessions.uid AND sessions.cookie = ?");
+        $stmt->bind_param("s", $usercookie);
+        $stmt->execute();
+        $stmt->bind_result($username, $username_id);
+        $stmt->fetch();
+        $stmt->close();
+
+        // Check if session exists
+        if (!$username)
+	{
+		// Session doesnt exist, return to index.
+                header("Location: index.html");
+	}
+}
+else
+{
+	// No user cookie at all!
+        header("Location: index.html");
 }
 
 $background_image_dir = __DIR__."/images/";
