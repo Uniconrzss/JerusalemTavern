@@ -8,13 +8,14 @@
 <body>
 <h1>Jerusalem Tavern</h1>
 <p>Enter your Username and Password to log in.</p>
-<form autocomplete="on"action="login_attempt.php" method="post">
+<form autocomplete="on" action="login_attempt.php" method="post">
 	<label class="inputlabel" for="name">Username:</label>
 	<input class="textinput" type="text" name="name" required><br><br>
 	<label class="inputlabel" for="password">Password:</label>
 	<input class="textinput" type="password" name="password" required><br><br>
 	<input class="btn" type="submit" value="Login">
 	<input type="text" style="display: none;" name="botfield">
-</form>
+</form><br>
+	<button onclick='window.location.replace(".")' class="btn">Back</button>
 </body>
 </html> 

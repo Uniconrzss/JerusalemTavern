@@ -31,14 +31,15 @@
 <p>Enter your details to register to the website.</p>
 <form autocomplete="off" action="new_account.php" method="post">
 	<label class="inputlabel" for="name">Username:</label>
-	<input class="textinput" type="text" name="name" required><br>
+	<input class="textinput" type="text" name="name" required><br><br>
 	<label class="inputlabel" for="email">E-Mail:   </label>
-	<input class="textinput" type="text" name="email"><br>
+	<input class="textinput" type="text" name="email"><br><br>
 	<label class="inputlabel" for="password">Password:</label>
-	<input class="textinput" type="password" minlength="9" name="password" required><br>
-<input class="button" type="submit" value="Register">
+	<input class="textinput" type="password" minlength="9" name="password" required><br><br>
+<input class="btn" type="submit" value="Register">
 	<input type="text" style="display: none;" name="botfield">
-</form>
+</form><br>
 
+	<button onclick='window.location.replace(".")' class="btn">Back</button>
 </body>
 </html>
