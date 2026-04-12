@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 21, 2026 at 10:45 PM
+-- Generation Time: Apr 12, 2026 at 07:40 PM
 -- Server version: 10.11.14-MariaDB-0+deb12u2
 -- PHP Version: 8.2.29
 
@@ -72,6 +72,13 @@ CREATE TABLE `sessions` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'Time when the session was created.'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Lietotaja Sesijas Tabula';
 
+--
+-- Dumping data for table `sessions`
+--
+
+INSERT INTO `sessions` (`id`, `cookie`, `uid`, `created_at`) VALUES
+(15, 'fdc0aa63a1d8265a7d43d19e96bc9f9b41fbf8364f102683eb4d7c76dac7dc04', 12, '2026-03-13 17:31:53');
+
 -- --------------------------------------------------------
 
 --
@@ -85,6 +92,13 @@ CREATE TABLE `users` (
   `password` varchar(500) NOT NULL COMMENT 'Lietotaja Parole',
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Lietotaju Tabula';
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`) VALUES
+(12, 'Testuser', 'test@test.test', '$2y$10$ZxsMFPxGaAoa3ovD3/RxBOi1Goi3KIpDbdrTYSuWP8uTAgJ2YmL0K', '2026-02-26 02:10:19');
 
 --
 -- Indexes for dumped tables
@@ -134,13 +148,13 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `sessions`
 --
 ALTER TABLE `sessions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 DELIMITER $$
 --
