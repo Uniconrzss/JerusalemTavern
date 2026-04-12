@@ -45,9 +45,7 @@ if ($result->num_rows > 0) {
     }
 } else {
     //couldnt log in
-    echo "0 Accounts? Bug";
-    die();
-
+    echo "0 Accounts? Bug or empty DB!";
 }
 header("Location: login.html");
 die();

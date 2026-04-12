@@ -1,0 +1,68 @@
+body {
+	background-color: rgb(45, 33, 66);
+	text-align: center;
+	font-family: Consolas, monospace;
+}
+
+h1 {
+	color: rgb(255, 255, 255);
+	background-color: rgb(105, 40, 146);
+	margin-left: 20%;
+	margin-right: 20%;
+	border-radius: 30px;
+	font-size: 50px;
+	font-family: cursive;
+}
+
+p {
+	color: rgb(196, 175, 252);
+	background-color: rgb(121, 66, 180);
+	margin-left: 30%;
+	margin-right: 30%;
+	border-radius: 30px;
+}
+
+.inputlabel {
+	color: #FFFFFF;
+	font-size: 15pt;
+	letter-spacing: 5px;
+	text-transform: uppercase;
+	background-color: rgb(121, 66, 180);
+	border-right-style: none;
+	border-bottom-left-radius: 20px;
+	border-top-left-radius: 20px;
+	padding: 5px;
+}
+
+.textinput {
+	padding 5px;
+	border-top-style: none;
+	border-left-style: none;
+	border-right-style: none;
+	border-bottom-style: solid;
+	background-color: rgba(0,0,0,0);
+	color: #FFFFFF;
+	font-size: 15pt;
+	letter-spacing: 5px;
+}
+
+.button_panel {
+	margin-top: 10%;
+}
+
+.btn {
+	background-color: #8f3656;
+	color: #FFFFFF;
+	font-size: 15pt;
+	letter-spacing: 5px;
+	padding: 5px 32px;
+	border-radius: 30px;
+	border-style: none;
+	text-transform: uppercase;
+	transition-duration: 0.2s;
+}
+
+.btn:hover {
+	background-color: #E83C91;
+}
+

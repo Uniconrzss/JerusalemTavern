@@ -1,6 +1,6 @@
 <html>
 <head>
-	<link rel="stylesheet" href="entrance.css">
+	<link rel="stylesheet" href="looks/css/mainstyle.css">
 	<title>The Jerusalem Tavern > Register</title>
 	<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 	<?php
