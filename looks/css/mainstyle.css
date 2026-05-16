@@ -5,45 +5,67 @@ body {
 }
 
 h1 {
-	color: rgb(255, 255, 255);
-	background-color: rgb(105, 40, 146);
+	color: rgb(0, 0, 0);
+	background-color: rgb(196, 175, 252);
+	border-style: solid;
+	border-color: rgb(100, 47, 136);
 	margin-left: 20%;
 	margin-right: 20%;
 	border-radius: 30px;
 	font-size: 50px;
-	font-family: cursive;
+	font-family: 'Times New Roman', Times, serif;
 }
 
 p {
-	color: rgb(196, 175, 252);
-	background-color: rgb(121, 66, 180);
+	color: rgb(0, 0, 0);
+	background-color: rgb(196, 175, 252);
+	font-weight: bold;
 	margin-left: 30%;
 	margin-right: 30%;
-	border-radius: 30px;
+	border-radius: 35px;
+	padding: 5px;
+}
+
+form {
+	margin-bottom: 0;
+}
+
+.inputcontainer {
+	border-style: solid;
+	border-color: #dadada;
+	border-radius: 15px;
+	background-color: #f0f0f0;
+	margin-left: 25%;
+	margin-right: 25%;
+	padding: 1%;
 }
 
 .inputlabel {
 	color: #FFFFFF;
 	font-size: 15pt;
+	font-weight: bold;
 	letter-spacing: 5px;
 	text-transform: uppercase;
-	background-color: rgb(121, 66, 180);
+	background-color: rgb(68, 38, 100);
 	border-right-style: none;
 	border-bottom-left-radius: 20px;
 	border-top-left-radius: 20px;
-	padding: 5px;
+	padding: 10px;
+	padding-right: 0px;
 }
 
 .textinput {
-	padding 5px;
+	padding: 5px;
 	border-top-style: none;
 	border-left-style: none;
 	border-right-style: none;
 	border-bottom-style: solid;
 	background-color: rgba(0,0,0,0);
-	color: #FFFFFF;
+	color: #000000;
 	font-size: 15pt;
+	font-weight: bold;
 	letter-spacing: 5px;
+	margin-top: 10px;
 }
 
 .button_panel {
@@ -51,11 +73,13 @@ p {
 }
 
 .btn {
-	background-color: #8f3656;
-	color: #FFFFFF;
-	font-size: 15pt;
+	background-color: rgb(173, 109, 241);
+	color: #000000;
+	font-size: 28pt;
+	font-weight: bold;
 	letter-spacing: 5px;
 	padding: 5px 32px;
+	margin-top: 20px;
 	border-radius: 30px;
 	border-style: none;
 	text-transform: uppercase;
@@ -63,6 +87,7 @@ p {
 }
 
 .btn:hover {
-	background-color: #E83C91;
+	background-color: rgb(46, 25, 70);
+	color: #FFFFFF;
 }
 
