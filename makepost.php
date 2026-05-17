@@ -66,8 +66,8 @@ function checks()
 	$bcheck = 0;
 	if (!empty($_FILES["b_image"]["name"])) {
 		$background_file = basename($_FILES["b_image"]["name"]);
-    		$background_filepath = __DIR__."/images/" . $background_file;
-    		$background_filetype = pathinfo($background_filepath, PATHINFO_EXTENSION);
+    	$background_filepath = __DIR__."/images/" . $background_file;
+    	$background_filetype = pathinfo($background_filepath, PATHINFO_EXTENSION);
 		echo("1");
 		// Check if background Image filetype is valid.
 		if (checkft($background_filetype))
@@ -102,29 +102,32 @@ function checks()
     		$post_file = basename($_FILES["p_image"]["name"]);
     		$post_filepath = __DIR__."/post-images/". $post_file;
     		$post_filetype = pathinfo($post_filepath, PATHINFO_EXTENSION);
-		echo("p1");
-		// Check if post Image filetype is valid.
-                if (checkft($post_filetype))
-		{       
-			echo("p2");
-                        // Check if post image name already exists.
-                        //if (!file_exists($post_filepath))
-			//{       
-				echo("p3");
-                                // Check filesize of the post image.
-                                if (!($_FILES["p_image"]["size"] > 50000))
-				{       
-					echo("p4");
-                                        // Check if its a real image.
-                                        if (getimagesize($_FILES["p_image"]["tmp_name"]))
+			echo("p1");
+
+			// Check if post Image filetype is valid.
+            if (checkft($post_filetype))
+			{
+				echo("p2");
+                // Check if post image name already exists.
+                //if (!file_exists($post_filepath))
+				//{       
+					echo("p3");
+
+					// Check filesize of the post image.
+					echo($_FILES["p_image"]["size"]);
+					if (!($_FILES["p_image"]["size"] > 2000000))
 					{       
-						echo("p5");
-                                                // Image is validated!
-                                                $pcheck = 1;
-                                        }       
-                                }       
-                        //}       
-                }  
+						echo("p4");
+						// Check if its a real image.
+						if (getimagesize($_FILES["p_image"]["tmp_name"]))
+						{       
+							echo("p5");
+							// Image is validated!
+							$pcheck = 1;
+						}
+					}
+				//}
+            }
 	}
 	else
 	{
@@ -205,7 +208,7 @@ if (!empty($_FILES["b_image"]["name"]) && !empty($_FILES["p_image"]["name"])) {
         ?><br><?php echo "file was uploaded successfully!"; ?><br><?php
     } else {
     	// FAILED CHECKS!
-	$conn->close();
+		$conn->close();
     	// header("Location: mainpage.php");	
     }
 } else { // No images uploaded.

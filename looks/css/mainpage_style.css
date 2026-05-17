@@ -2,10 +2,125 @@ body {
 	background-color: rgb(255, 255, 255);
 	text-align: center;
 	font-family: Consolas, monospace;
-    background-image: url("../textures/BG_wood.png");
-    background-repeat: repeat-y;
-    background-position: left-top;
-    background-size: 100%;
+}
+
+h1 {
+	color: rgb(0, 0, 0);
+	background-color: rgb(196, 175, 252);
+	border-style: solid;
+	border-color: rgb(100, 47, 136);
+	margin-left: 20%;
+	margin-right: 20%;
+	border-radius: 30px;
+	font-size: 50px;
+	font-family: 'Times New Roman', Times, serif;
+}
+
+h2 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 0px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-width: 5px;
+    background-color: rgb(46, 25, 70);
+	color: #FFFFFF;
+}
+
+.logoutBtn {
+    background-color: rgb(173, 109, 241);
+	color: #000000;
+	font-size: 16pt;
+	font-weight: bold;
+	letter-spacing: 5px;
+	padding: 5px 32px;
+	border-radius: 30px;
+	border-style: none;
+	text-transform: uppercase;
+	transition-duration: 0.2s;
+}
+
+.logoutBtn:hover {
+    background-color: rgb(46, 25, 70);
+	color: #FFFFFF;
+}
+
+.btn {
+	background-color: rgb(173, 109, 241);
+	color: #000000;
+	font-size: 28pt;
+	font-weight: bold;
+	letter-spacing: 5px;
+	padding: 5px 32px;
+	margin-top: 20px;
+    margin-bottom: 20px;
+	border-radius: 30px;
+	border-style: none;
+	text-transform: uppercase;
+	transition-duration: 0.2s;
+}
+
+.btn:hover {
+	background-color: rgb(46, 25, 70);
+	color: #FFFFFF;
+}
+
+.newPostLabel {
+    font-weight: bold;
+    font-size: 16pt;
+    background-color: #FFFFFF;
+    border-style: solid;
+    border-bottom-style: none;
+    border-color: rgb(126, 113, 161);
+    padding: 5px;
+    padding-left: 194px;
+    padding-right: 194px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.newPostTitle {
+    border-style: solid;
+    border-color: rgb(126, 113, 161);
+    border-top-style: none;
+    border-width: 3px;
+    width: 501px;
+}
+
+.newPostText {
+    border-style: solid;
+    border-color: rgb(126, 113, 161);
+    border-top-style: none;
+    border-width: 3px;
+    width: 501px;
+    height: 280px;
+}
+
+.newPostImage {
+    display: none;
+}
+
+.smallContainer {
+    border-style: solid;
+    border-radius: 15px;
+    border-top-color: rgb(237, 230, 255);
+    border-left-color: rgb(237, 230, 255);
+    border-right-color: rgb(126, 113, 161);
+    border-bottom-color: rgb(126, 113, 161);
+    background-color: #ffffff;
+    margin: 20px;
+}
+
+.welcomeMessage {
+    color: rgb(0, 0, 0);
+	background-color: rgb(196, 175, 252);
+    font-size: 16pt;
+	font-weight: bold;
+	margin-left: 30%;
+	margin-right: 30%;
+	border-radius: 35px;
+	padding: 5px;
+    vertical-align: middle;
 }
 
 .container {
@@ -17,25 +132,26 @@ body {
 }
 
 .container_item {
+    text-align: center;
     width: 600px;
     word-wrap: break-word;
-    border-style: solid;
+    background-color: rgb(196, 175, 252);
+    border-style: none;
+    border-radius: 20px;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-color: rgb(126, 113, 161);
+    border-width: 5px;
 }
 
 .post {
     text-align: center;
+    word-break: break-all;
     margin-left: 30%;
     margin-right: 30%;
     padding: 5%;
-}
-
-.postText {
-    padding: 10px;
-    background-image: url("../textures/Paper_New.png");
-    background-position: center;
-    word-wrap: break-word;
-    background-size: 100%;
-    background-repeat: no-repeat;
+    border-style: solid;
+    background-color: #dadada;
 }
 
 .pageNumber {
