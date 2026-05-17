@@ -187,7 +187,7 @@ if (!empty($_FILES["b_image"]["name"]) && !empty($_FILES["p_image"]["name"])) {
     } else {
         // FAILED CHECKS!
         $conn->close();
-	// header("Location: mainpage.php");
+		header("Location: mainpage.php");
     }
 } else if (!empty($_FILES["p_image"]["name"])) { // Just post image
 
@@ -209,7 +209,7 @@ if (!empty($_FILES["b_image"]["name"]) && !empty($_FILES["p_image"]["name"])) {
     } else {
     	// FAILED CHECKS!
 		$conn->close();
-    	// header("Location: mainpage.php");	
+    	header("Location: mainpage.php");	
     }
 } else { // No images uploaded.
 

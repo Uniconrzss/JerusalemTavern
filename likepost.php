@@ -5,31 +5,34 @@ require "model/condb.php";
 // USER DATA
 $liked_post_id = $_POST['post_id'];
 
-// FROM OLD COOKIE SYSTEM - RENEW!!
-$username = $_POST['username'];
-echo "Username is $username    ";
-
 //Connect
 $conn = conDB();
 echo "Connected";
 
-$sql = "SELECT id, username FROM users";
+// LOGIN SYSTEM UPDATED
+if (isset($_COOKIE["u_cookie"]))
+{
+        $usercookie = $_COOKIE['u_cookie'];
+        // Validate Cookie
+        
+        $stmt = $conn->prepare("SELECT users.username, users.id FROM sessions, users WHERE users.id = sessions.uid AND sessions.cookie = ?");
+        $stmt->bind_param("s", $usercookie);
+        $stmt->execute();
+        $stmt->bind_result($username, $username_id);
+        $stmt->fetch();
+        $stmt->close();
 
-$result = $conn->query($sql);
-
-//Find User ID
-// FROM OLD COOKIE SYSTEM - RENEW!!
-if ($result->num_rows > 0) {
-    // output data of each row
-    while ($row = $result->fetch_assoc()) {
-        ?><br><?php echo "Comparing " . $row["username"] . " against $username";
-        if ($row['username'] == $username) {
-            $username_id = $row['id'];
-            echo " Found match! Id is $username_id";
-        }
-    }
-} else {
-    echo "0 results";
+        // Check if session exists
+        if (!$username)
+	{
+		// Session doesnt exist, return to index.
+                header("Location: index.html");
+	}
+}
+else
+{
+	// No user cookie at all!
+        header("Location: index.html");
 }
 
 //Check if user has already liked the post

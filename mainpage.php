@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <?php
 // TODO:
-// 1. Pages
 // 4. Image
 
 
@@ -199,27 +198,28 @@ else
 
                     //Display Post
                     ?>
-                    <br>
                     <div class="post">
-                        <h3 id="post_title"><?php echo $row["title"]; ?></h3>
-                        <h3 id="likes"><?php echo $post_like_ammount; ?> Likes</h3>
-                        <form id="like_button" action="likepost.php" method="post">
-                            <input type="hidden" name="post_id" value="<?php echo $row["id"]; ?>">
-                            <input type="hidden" name="username" value="<?php echo $username; ?>">
-                            <input id="emoji_button" type="submit" name="like_button" value="👍">
-                            <a>
-                            </a>
-                        </form>
-                        <p class="post_message"><?php echo $row["content"]; ?></p>
-                        <p class="post_user">From: <?php echo $row["username"]; ?></p>
-                        <?php
-
-                    if ($post_imageURL != "post-images/") 
-                    {
-                        ?> <img class="post_image" src="<?php echo $post_imageURL; ?>"> <?php
-                    }
-                    ?>
+                        <div class="postContainer">
+                            <p class="postUser postContainerItem">From: <?php echo $row["username"]; ?></p>
+                        </div>
                         
+                        <h3 class="postTitle"><?php echo $row["title"]; ?></h3>
+
+                        <?php
+                            if ($post_imageURL != "post-images/") 
+                            {
+                                ?> <img class="postImage" src="<?php echo $post_imageURL; ?>"> <?php
+                            }
+                        ?>
+                        <p class="postMessage"><?php echo $row["content"]; ?></p>
+                        <div class="postContainer2">
+                            <p class="likesCount"><?php echo $post_like_ammount; ?> Likes</p>
+                            <form class="likeButtonForm" action="likepost.php" method="post">
+                                    <input type="hidden" name="post_id" value="<?php echo $row["id"]; ?>">
+                                    <input type="hidden" name="username" value="<?php echo $username; ?>">
+                                    <input class="likeButton" type="submit" name="like_button" value="👍">
+                            </form>
+                        </div>
                     </div>
                     <?php
                 }

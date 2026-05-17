@@ -123,6 +123,70 @@ h2 {
     vertical-align: middle;
 }
 
+.likeButton {
+    font-size: 26pt;
+    text-shadow: 0 0 5px #000000;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    border-style: none;
+    background-color: rgb(196, 175, 252);
+    transition-duration: 0.2s;
+}
+
+.likeButton:hover {
+    background-color: rgb(46, 25, 70);
+    text-shadow: 0 0 5px #ffffff;
+}
+
+.postTitle {
+    font-weight: bold;
+    font-size: 36pt;
+    background-color: rgb(46, 25, 70);
+	color: #FFFFFF;
+    margin: 0;
+    padding: 20px;
+}
+
+.postImage {
+    max-width: 800px;
+    border-radius: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.postMessage {
+    font-weight: bold;
+    font-size: 16pt;
+    background-color: rgb(46, 25, 70);
+	color: #FFFFFF;
+    margin: 0;
+    padding: 20px;
+}
+
+.postContainer {
+    display: flex;
+    justify-content: flex-start;
+    background-color: #FFFFFF;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(126, 113, 161);;
+}
+
+.postContainer2 {
+    justify-content: center;
+    background-color: #FFFFFF;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-style: solid;
+    border-top-color: rgb(126, 113, 161);;
+}
+
+.postContainerItem {
+    margin-left: 20px;
+}
+
 .container {
 	display: flex;
 	justify-content: space-evenly;
@@ -147,11 +211,14 @@ h2 {
 .post {
     text-align: center;
     word-break: break-all;
-    margin-left: 30%;
-    margin-right: 30%;
-    padding: 5%;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 3%;
+    padding-top: 0;
     border-style: solid;
-    background-color: #dadada;
+    border-radius: 20px;
+    border-color: rgb(126, 113, 161);
+    background-color: rgb(196, 175, 252);
 }
 
 .pageNumber {
@@ -163,8 +230,4 @@ h2 {
     font-weight: bold;
     margin-left: 5px;
     margin-right: 5px;
-}
-
-.new_post_label {
-
 }
