@@ -123,8 +123,8 @@ else
                             ?>
                             <div class="smallContainer">
                                 <h3 class="topPostTitle"><?php echo $row["title"]; ?></h3>
-                                <h3 class="topPostUser">From: <?php echo $row["username"]; ?></h3>
                                 <p class="topPostMessage"><?php echo $row["content"]; ?></p>
+                                <h3 class="topPostUser">From: <?php echo $row["username"]; ?></h3>
                             </div>
                             <?php
                         }
