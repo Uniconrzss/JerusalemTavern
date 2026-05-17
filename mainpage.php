@@ -75,11 +75,19 @@ else
                 <h2>Dev News</h2>
                 <div class="smallContainer">
                     <h3>5/17/2026 - Look changes</h3>
-                    <p>Changed looks of the main page</p>
+                    <p>Changed looks of the main page.</p>
                 </div>
                 <div class="smallContainer">
                     <h3>5/16/2026 - Look changes</h3>
-                    <p>Changed looks of the login and register + index pages</p>
+                    <p>Changed looks of the login and register + index pages.</p>
+                </div>
+                <div class="smallContainer">
+                    <h3>4/20/2026 - Functional changes</h3>
+                    <p>likepost.php did not use the new sessions system.</p>
+                </div>
+                <div class="smallContainer">
+                    <h3>4/18/2026 - Functional changes</h3>
+                    <p>New sessions system. User login creates a session in the database and a cookie.</p>
                 </div>
             </div>
 
