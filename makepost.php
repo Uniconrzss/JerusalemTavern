@@ -115,7 +115,7 @@ function checks()
 
 					// Check filesize of the post image.
 					echo($_FILES["p_image"]["size"]);
-					if (!($_FILES["p_image"]["size"] > 2000000))
+					if (!($_FILES["p_image"]["size"] > 5*1048576))
 					{       
 						echo("p4");
 						// Check if its a real image.
